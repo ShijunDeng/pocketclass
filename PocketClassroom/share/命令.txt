@@ -1,0 +1,11 @@
+svnadmin create F:/360тфел/svnrepo
+svnserve -d -r F:/360тфел/svnrepo
+svnserve -d -r F:/360тфел/svnrepo --listen-port 3690
+wustxiaodeng.xicp.cn
+wustxiaodeng.vicp.cc 
+wust_xiaodeng@sina.cn/wust_dengshijun@sina.cn  wust_dengshijun@sina.com 583660
+http://pocketclass.oicp.net:8080/PocketClassroom/
+http://pocketclass.oicp.net/PocketClassroom/
+http://localhost/PocketClassroom/
+http://localhost/PocketclassAdmin/jsp/common/main.jsp
+http://pocketclass.oicp.net/PocketclassAdmin/jsp/common/main.jsp

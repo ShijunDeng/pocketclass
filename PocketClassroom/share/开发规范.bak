@@ -1,0 +1,17 @@
+开发工具及其相关信息：
+
+邓仕军:
+开发工具：MyEclipse 10.5
+JDK 版本：SUN JDK 1.6.0_13
+Java EE5
+JUnit 4
+数据库：MySql 5.5
+服务器：
+Tomcat :apache-tomcat-6.0.35
+开发包：
+commons-beanutils-1.8.3
+commons-logging-1.1.1
+jaxen-1.1-beta-6
+dom4j:dom4j-1.6.1
+MySql驱动：mysql-connector-java-5.1.22
+

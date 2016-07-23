@@ -1,0 +1,42 @@
+#d1 {
+	border: border:#00CCFF 1px solid;
+	width: 960px;
+	height: 970px;
+}
+
+#left {
+	margin-left: 15px;
+	height: 720px;
+	width: 190px;
+	float: left;
+	border: #00CCFF 1px solid;
+}
+
+#right {
+	margin-left: 15px;
+	height: 970px;
+	width: 710px;
+	float: left;
+	border: #00CCFF 1px solid;
+}
+.td_left{
+	width:90px;
+	text-align:right;
+	color:#4c6eb3;
+	font-size:12px;
+}
+
+div table
+{
+	border:#00CCFF 1px solid;
+	
+}
+div table tr
+{
+    border:#00CCFF 1px solid;
+}
+div table td
+{
+border:#00CCFF 1px solid;
+
+}

@@ -1,0 +1,131 @@
+@CHARSET "UTF-8";
+
+.main {
+	align: center;
+	margin: 0px auto;
+	padding:0px;
+	text-align: center;
+	font-size: 12px;
+	width: 960px;
+}
+
+.left {
+	float: left;
+	height: auto;
+	width: 20%;
+}
+
+.right {
+	margin-top: -20px;
+	float: left;
+	height: auto;
+	width: 80%;
+}
+
+.blueLogo_a {
+	margin-left: 0px;
+	margin-top: 25px;
+	height: 33px;
+	width: 750px;
+	background-image: url(../../images/register_logo/register_img002.gif);
+}
+
+.title_a {
+	padding-top: 10px;
+	padding-left: 10px;
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.r_form {
+	margin-top: 0px;
+	padding-top: 20px;
+	text-align: center;
+	padding-left: 0px;
+	width: 749px;
+	height: 550px auto;
+	min-height:200px;
+	font-family: "新宋体";
+	border: 1px solid #01abe9;
+	background-repeat: no-repeat;
+}
+
+.title_a {
+	padding-top: 10px;
+	padding-left: 10px;
+	text-align: left;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+#errormessage {
+	height: 20px;
+	display: block;
+	color: red;
+	font-size: 14px;
+}
+
+.oldpwd_label,.newpwd_label,.confpwd_label {
+	font-size: 14px;
+	padding-top: 0px;
+	padding-left: 0px;
+}
+
+.oldpwd_text,.newpwd_text,.confpwd_text {
+	color: #000000;
+	border-color: #999999;
+	font-family: arial, "宋体";
+}
+
+.oldpwd_tip,.newpwd_tip,.confpwd_tip {
+	font-family: arial, "宋体";
+	color: #6A5A53;
+	font-size: 12px;
+}
+
+.doSubmit {
+	margin-left: 0px;
+	border: none;
+	width: 120px;
+	height: 30px;
+	color: #FFFFFF;
+	font-size: 14px;
+	background-image: url(../../images/register_logo/dosubmit.gif);
+	background-position: bottom;
+}
+
+.oldemail_label,.newemail_label {
+	font-size: 14px;
+	padding-top: 0px;
+	padding-left: 0px;
+}
+
+.oldemail_text,.newemail_text {
+	color: #000000;
+	border-color: #999999;
+	font-family: arial, "宋体";
+}
+
+.oldemail_tip,.newemail_tip {
+	font-family: arial, "宋体";
+	color: #6A5A53;
+	font-size: 12px;
+}
+
+#errormessage {
+	height: 20px;
+	display: block;
+	color: red;
+	font-size: 16px;
+}
+
+.clear {
+	display: block;
+	overflow: hidden;
+	clear: both;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+}

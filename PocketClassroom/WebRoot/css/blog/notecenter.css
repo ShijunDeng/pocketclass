@@ -1,0 +1,147 @@
+#d1 {
+	border: border:#00CCFF 1px solid;
+	width: 960px;
+}
+
+#categoryIndex {
+	margin-left: 15px;
+	height: 228px;
+	width: 160px;
+	float: left;
+	border: #00CCFF 1px solid;
+}
+
+#notes {
+	margin-left: 20px;
+	width: 540px;
+	float: left;
+	border: #00CCFF 1px solid;
+}
+
+#hotandnew {
+	margin-left: 10px;
+	width: 200px;
+	float: left;
+	border: #00CCFF 1px solid;
+}
+
+.item {
+	border: 1px solid rgb(51, 153, 255);
+	width: 530px;
+	margin-left: 10px
+}
+
+
+.item_top {
+	text-align: left;
+	height: 25px;
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.item_top a {
+	text-decoration: none;
+	color: #FF7B00;
+}
+.item_top a:hover
+{
+	text-decoration: underline;
+	color: rgb(1, 171, 233);
+}
+.item_left {
+	width: 72px;
+	height: 88px;
+	border: #3399FF 1px solid;
+	margin: 8px;
+	float: left;
+}
+
+.item_right {
+	width: 415px;
+	height: 110px;
+	border: #3399FF 1px solid;
+	float: left;
+	margin: 8px;
+	text-align: left;
+}
+
+.item_intro {
+	position: relative;
+	height: 110px;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.item_bottom {
+	text-align: left;
+	border: #3399FF 1px solid;
+	margin-top: 5px;
+}
+
+#hotest {
+	border: #3399FF 1px solid;
+}
+
+.hotest_item {
+	text-align: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.hotest_item a {
+	text-decoration: none;
+	color: #555252;
+}
+
+.hotest_item a:hover {
+	text-decoration: underline;
+	color: rgb(1, 171, 233);
+}
+
+img {
+	border-width: 0;
+	border-style: none;
+}
+.clear
+{
+	clear:both;
+}
+
+.btn-img {
+	border: 0px;
+	cursor: pointer;
+	overflow: hidden;
+	margin-top: 5px;
+	padding: 0px;
+	text-align: center;
+	font-family: "ËÎÌו";
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.btn-img:hover {
+	font-family: "ËÎÌו";
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.btn-s1,.btn-s2,.btn-s3 {
+	border: 0px solid #fff;
+	color: #fff;
+	padding: 5px;
+	*padding: 2px;
+}
+
+.btn-s1,.btn-s1:hover {
+	background: #FF7101;
+}
+.blog_con {
+	background: #00a0ef;
+	border: #00a0ef 1px solid;
+	text-align: center;
+}

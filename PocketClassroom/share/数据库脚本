@@ -1,0 +1,937 @@
+/*注意：
+1、中文插入问题；
+2、检测性别；
+3、插入帖子的时候，浏览次数增加问题，帖子编号增加问题
+*/
+/*
+TRUNCATE TABLE 表名;删除表中的全部数据
+SHOW ENGINE INNODB STATUS;
+*/
+
+use mysql 
+/*修改密码*/
+update user set Password=password('pocketclass') where User='root'; 
+flush privileges; 
+alter database pocketclass character set gb2312;
+
+drop database pocketclass;
+create database pocketclass;
+use pocketclass;  
+
+
+INSERT INTO Account VALUES('pocketclass01','4QrcOUm6Wau+VuBX8g+IPg==','张三','爽歪
+
+歪','male','1992-07-18','13296696011','946057490@qq.com','946057490','武汉科技大学','计算机学
+
+院','manager','no_img.jpg');
+INSERT INTO Account VALUES('pocketclass02','4QrcOUm6Wau+VuBX8g+IPg==','李四','小
+
+李','male','1995-10-24','13296696011','122655904@qq.com','122655904','武汉科技大学','计算机学
+
+院','manager','no_img.jpg');
+INSERT INTO Account VALUES('pocketclass03','4QrcOUm6Wau+VuBX8g+IPg==','王佳佳','车前
+
+草','female','1990-04-12','13296696011','9460574914@qq.com','946057491','武汉科技大学','计算机学
+
+院','manager','no_img.jpg');
+INSERT INTO Account VALUES('pocketclass04','4QrcOUm6Wau+VuBX8g+IPg==','赵七七','小
+
+七','female','1993-09-10','13296696011','946057492@qq.com','946057492','武汉科技大学','计算机学
+
+院','manager','no_img.jpg');
+INSERT INTO Account VALUES('pocketclass05','4QrcOUm6Wau+VuBX8g+IPg==','刘一二','哇哈
+
+哈','male','1994-12-21','13296696011','946057493@qq.com','946057493','武汉科技大学','计算机学
+
+院','manager','no_img.jpg');
+
+CREATE TABLE SUPER(
+idSuper CHAR(16) PRIMARY KEY,
+cateGory CHAR(32) NOT NULL
+);
+
+INSERT INTO SUPER VALUES('S01','JAVA');
+INSERT INTO SUPER VALUES('S02','WEB 前端');
+INSERT INTO SUPER VALUES('S03','移动编程');
+INSERT INTO SUPER VALUES('S04','数据库');
+INSERT INTO SUPER VALUES('S05','.NET');
+INSERT INTO SUPER VALUES('S06','其他语言');
+
+
+INSERT INTO Middle VALUES('M0101','JAVA SE','S01');
+INSERT INTO Middle VALUES('M0102','JAVA WEB','S01');
+INSERT INTO Middle VALUES('M0103','JAVA EE','S01');
+INSERT INTO Middle VALUES('M0104','框架技术','S01');
+
+INSERT INTO Middle VALUES('M0201','XML','S02');
+INSERT INTO Middle VALUES('M0202','HTML','S02');
+INSERT INTO Middle VALUES('M0203','JavaScript','S02');
+INSERT INTO Middle VALUES('M0204','Jquery','S02');
+
+INSERT INTO Middle VALUES('M0301','Android','S03');
+INSERT INTO Middle VALUES('M0302','IOS','S03');
+INSERT INTO Middle VALUES('M0303','WindowsPhone','S03');
+INSERT INTO Middle VALUES('M0304','JavaMe','S03');
+
+INSERT INTO Middle VALUES('M0401','Oracle','S04');
+INSERT INTO Middle VALUES('M0402','MySql','S04');
+INSERT INTO Middle VALUES('M0403','SqlServer','S04');
+INSERT INTO Middle VALUES('M0404','Access','S04');
+INSERT INTO Middle VALUES('M0405','NoSQL','S04');
+
+INSERT INTO Middle VALUES('M0501','C#','S05');
+INSERT INTO Middle VALUES('M0502','ASP.NET','S05');
+INSERT INTO Middle VALUES('M0503','WindForm','S05');
+INSERT INTO Middle VALUES('M0504','框架技术','S05');
+INSERT INTO Middle VALUES('M0505','控件开发','S05');
+
+INSERT INTO Middle VALUES('M0601','C/C++','S06');
+INSERT INTO Middle VALUES('M0602','PHP','S06');
+INSERT INTO Middle VALUES('M0603','Ruby','S06');
+INSERT INTO Middle VALUES('M0604','(Visual) Basic','S06');
+INSERT INTO Middle VALUES('M0605','Python','S06');
+
+INSERT INTO Teacher VALUES('Teach001','马士兵',35,'male','1998 年毕业于清华大学，先后在IBM、澳大
+
+利亚GoldenTech工作多年，历任程序员、Team Leader、Project Manager、CTO等职位，有过十几个大型项目
+
+的开发经验。曾在中国科学院研究生院、北方交通大学、华中科技大学传授软件开发课程。');
+INSERT INTO Teacher VALUES('Teach002','方立勋',30,'male','畅销软件开发书籍《java邮件开发详解》的
+
+合著者，精通C/C++ /VC++、VB、JAVA等编程语言，Oracle 、MySql和SQL Server等各种主流数据库系统。对
+
+J2EE有深入理解，尤其是对 Java安全和以Java语言为基础的各种框架有深入研究，包括Struts、Spring、
+
+Hibernate 、iBATIS 、AppFuse、AJAX等，有5年J2EE项目经验，具备很强的项目管理能力和丰富的项目实施
+
+经验。 目前在传智播客做软件讲师！');
+INSERT INTO Teacher VALUES('Teach003','张孝祥',38,'male','软件编程语言培训和软件工程师速成培训专
+
+家。2001年创办锐信科技有限公司，2005年创办传智播客科技有限公司，2011年创立黑马程序员训练营，一直
+
+致力于中国的软件开发教育事业，擅长网络应用程序开发和数据库编程。');
+INSERT INTO Teacher VALUES('Teach004','孙鑫',31,'male','软件编程语言培训和软件工程师速成培训专家
+
+。从事过多个重大项目开发：1999年，采用socket编程完成语音双向翻译系统的网络传输功能。 2000年初，
+
+从事语音双向翻译系统的整体开发；2000年3月，负责开发网络传真项目，并分别以标准c和vc实现传真传输的
+
+协议，完成传真的网络收发，并完成邮件系统的开发；2000年7月，参与erp项目的开发，2000年10月，主持开
+
+发英语多媒体教学软件的开发；2001年2月，参与开发vpn项目；2002年3月，参与组建高端编程语言培训机构
+
+；');
+INSERT INTO Teacher VALUES('Teach005','毕向东',35,'male','毕向东，精通C/C++、JAVA、SQLServer、
+
+MySql、ASP、JSP等编程语言和数据库系统，J2EE中的struts、hibernate、spring、JSF等技术框架。从事软
+
+件开发以及软件教育培训多年，参与过：校务管理系统产品的设计和开发，税务系统模块的后期升级与维护等
+
+。');
+INSERT INTO Teacher VALUES('Teach006','李刚',35,'male','从事10多年的Java EE应用开发，疯狂软件教
+
+育中心总监，疯狂Java实训营创始人，疯狂Java体系原创图书作者。曾任LITEON公司的J2EE技术主管，负责该
+
+公司的企业信息化平台的架构设计。曾任广州电信、广东龙泉科技等公司的技术培训导师。曾兼任广东技术师
+
+范学院计算机科学系的兼职副教授。');
+INSERT INTO Teacher VALUES('Teach007','肖文吉',35,'male','Java EE高级专家,具有10年以上的开发和教
+
+学经验,曾在国内多家有名企业从事软件项目开发，担任项目经理，研发经理等重要职位。之后从事软件编程
+
+教学，担任Java软件教学讲师，多年Java教学经验,曾任中山大学软件人才培训中心教学总监、广州软件人才
+
+培训基地、其主推“欢乐课堂”理念。');
+INSERT INTO Teacher VALUES('Teach008','李兴华',35,'male','著名JAVA培训讲师，JAVA EE高端培训讲师
+
+，北京魔乐科技（MLDN软件实训中心）教学总监，中科软通系统架构师，火车票网技术总监，北京伟仕嘉禾科
+
+技发展有限公司系统架构师，8年软件开发经验，5年高端培训经验，先后为40多家大中型企业做过培训，在
+
+JAVA培训方面享有很高的知名度。');
+INSERT INTO Teacher VALUES('Teach009','黎活明',28,'male','黎活明，Java EE高级架构师、咨询顾问、
+
+高级讲师，国内第一本ejb3.0书籍的作者，有着丰富的b/s系统开发与网站运营经验,主持或参与《一号通》、
+
+《固话彩铃》、《移动办公OA》、《统一信息发送机》、《MSN业务支撑平台》和《国内与国际机票预定系统
+
+》等项目，成功运营过中国农业网/游易网等电子商务网站。');
+INSERT INTO Teacher VALUES('Teach010','李勇',35,'male','主要从事信息工程与数据库、软件工程、管理
+
+信息系统分析与设计、企业资源管理（ERP）等领域的研究。主持完成了“节水管理信息系统”、“消防安全
+
+综合管理决策支持软件系统研究”、“财政非税收入票款分离业务管理信息系统”等科研项目');
+INSERT INTO Teacher VALUES('Teach011','杨中科',35,'male','传智播客联合创始人、如鹏网发起人。现为
+
+传智播客教学总监。 2005年毕业于山东大学物流工程专业。曾任职于微软中国、金蝶软件等知名IT企业。撰
+
+写了《J2EE开发全程实录》、《自己动手写开发工具》,《程序员的SQL金典》等技术图书。另外网上流传的13
+
+季.net视频被誉为入门级经典。');
+
+
+
+INSERT INTO VideoSeries VALUES('V010101','JAVA SE基础入门','Teach001',22,'本视频共分12章节，比较
+
+系统全面的介绍java se方面的基础知识，包括java概述、java基本程序结构、对象与类、继承多态、接口、
+
+Swing、AWT、事件以及处理、泛型、集合、IO、多线程以及java高级特性等，适合java入门级学者学
+
+习。','','M0101','2008-12-01 13:28:55','0101/001.jpg');
+INSERT INTO VideoSeries VALUES('V010102','Java基础视频教程（适合零基础入学者）','Teach003',28,'
+
+本视频是张孝祥老师2003年录制的一套Java经典入门视频，已在网上流传多年，至今仍受到无数Java学习者的
+
+热捧，无数人通过学习这套视频走上Java软件工程师的道路，甚至远在美国、日本、德国、英国、新西兰等国
+
+家的无数海外留学生也受这套视频的影响而加入到IT学习的阵营，其视频配套书籍《Java就业培训教程》被国
+
+内很多大专院校作为大学指定Java教材','','M0101','2011-05-11 16:28:15','0101/002.jpg');
+INSERT INTO VideoSeries VALUES('V010103','张孝祥2010年贺岁视频：Java高新技术','Teach003',29,'本
+
+套视频教程是张孝祥老师在录制完中国第一套Java培训视频、潜心修炼6年后复出的继Java邮件和struts视频
+
+教程之后的第三部视频教程，它与市面上目前流传的java基础视频教程有很大的区别，在那些java基础视频教
+
+程的基础上进行了有针对性的补充和加强，专门讲解Java基础中的高级知识和一些最新的技术，可以作为那些
+
+java基础视频教程的升级和后续补充学习资料，特别适合有一定java基础想提高的人士学
+
+习。','','M0101','2011-01-01 22:48:12','0101/003.jpg');
+INSERT INTO VideoSeries VALUES('V010104','张孝祥_Java多线程与并发库高级应用','Teach003',16,'Java
+
+线程是一项非常基本和重要的技术，在偏底层和偏技术的Java程序中不可避免地要使用到Java线程技术，特别
+
+是android手机程序和游戏开发中，多线程成了必不可少的一项重要技术。但是，很多Java程序员对Java线程
+
+技术的了解都仅停留在初级阶段，在项目中一旦涉及到多线程时往往就表现得糟糕至极，所以，软件公司常常
+
+使用Java线程技术来考察面试者的基本功和判断其编码水平的高低。本套视频教程是专门为了帮助那些已经学
+
+习和了解过、但掌握得并不是很深入的人们提高java线程技术而讲解的，所以，Java线程初学者学习本视频教
+
+程时可能会比较吃力，可能必须耐心学习多遍才能渐入佳境，但是，你一旦掌握了其中的内容，你对Java线程
+
+技术的了解将会相当出众！','','M0101','2011-10-21 18:29:32','0101/004.jpg');
+INSERT INTO VideoSeries VALUES('V010105','JAVA无难事','Teach004',38,'孙老师的java视频教程，对新
+
+手很有帮助，大家可以下载学习一下！视频共分 12 课，平均每课约两个小时（这个教程有一定的合并，但内
+
+容是全面的）。本套视频由孙鑫老师亲自授课录制，内容涵盖面广，从入门到精通，授课通俗易懂，分析问题
+
+独到精辟，学员通过本套光盘的学习，能够快速掌握 Java 编程语言，成为 Java 高手。 
+
+','','M0101','2008-12-01 13:28:55','0101/005.jpg');
+INSERT INTO VideoSeries VALUES('V010106','JNI视频教程','Teach001',28,'介绍JNI的含义、功能、最简
+
+单的Java调用C/C++代码的步骤和使用JNI的弊端，并按最简单的步骤编写在Java程序中调用本地代码的实例。
+
+内容包括：javah工具的用法、按照C/C++头文件来编写C/C++源文件、将C/C++源文件编译成动态连接库（DLL
+
+）、在Java程序中引入动态连接库等知识。 ','','M0101','2009-12-01 13:28:55','0101/006.jpg');
+
+INSERT INTO VideoSeries VALUES('V010201','30天轻松掌握JavaWeb视频','Teach002',30,'此套JavaWeb视
+
+频不同于市面上任何一套JavaWeb视频，它对JavaWeb真正作了全面、综合、深入的讲解，毫不夸张的说，学完
+
+此套视频后，你就可以完全、透彻地掌握JavaWEB开发。此套视频涵盖了WEB开发涉及到的所有常用知识点，无
+
+论从知识点的讲解、还是从内容的深度而言，可以说是无出其右。 此套视频不仅涵盖了JavaWEB开发可能涉及
+
+到的知识点，并且案例和项目贯穿整个课程。','','M0102','2011-12-01 15:11:55','0102/001.jpg');
+INSERT INTO VideoSeries VALUES('V010202','Java web入门级视频','Teach001',39,'此套JavaWeb视频不同
+
+于市面上任何一套JavaWeb视频，它对JavaWeb真正作了全面、综合、深入的讲解，毫不夸张的说，学完此套视
+
+频后，你就可以完全、透彻地掌握JavaWEB开发。此套视频涵盖了WEB开发涉及到的所有常用知识点，无论从知
+
+识点的讲解、还是从内容的深度而言，可以说是无出其右。 此套视频不仅涵盖了JavaWEB开发可能涉及到的知
+
+识点，并且案例和项目贯穿整个课程。','','M0102','2010-07-01 13:28:55','0102/002.jpg');
+INSERT INTO VideoSeries VALUES('V010203','肖文吉老师JavaWEB授课视频','Teach007',25,'此教程主要讲
+
+解JavaWeb领域所涉及相关技术，观看此视频需要有JavaSE基础。内容包括XML解析、HTTP协议、Servlet、JSP
+
+、EL、JSTL、AJAX、JQuery.valiadate以及在Web项目中常用的技术。后期还会对在实际项目中所涉及的技术
+
+作补充，比如文件上传等。有需要的读者可继续关注，也可以直接联系作者。','','M0102','2012-01-01 
+
+13:28:55','0102/003.jpg');
+INSERT INTO VideoSeries VALUES('V010204','Java web开发','Teach003',39,'本系列视频是传智播客Java
+
+开发培训教师张孝祥老师的又一心血力作，是张老师新作《深入体验Java Web开发内幕—核心基础》的配套视
+
+频。本套视频为将您详细地剖析Java Web开发的全过程，使您轻松地解决在使用Java进行Web应用开发遇到的
+
+各类疑难杂症。让学员身临其境地学习和感受编程的乐趣，同时体会张孝祥老师授课的震撼力和穿透
+
+力。','','M0102','2010-07-01 13:28:55','0102/004.jpg');
+
+INSERT INTO VideoSeries VALUES('V010301','JDBC视频教程','Teach010',26,'一些视频教程通过浅显案例
+
+来让初学者感到轻松，但是课程中编写的代码不能直接应用于项目中；而本套视频教程正好相反，视频讲解者
+
+李勇老师以技术见长，性格朴实无华、不善于幽默搞笑，李勇老师编写的代码非常专业和实用，整个内容都是
+
+采用实际项目中应用的高水准代码、站在较高层次上进行深入讲解，所以，初学人员学习本视频教程在开始时
+
+会比较吃力，可能必须耐心学习多遍才能渐入佳境，但你一旦掌握了其中的内容，特别是掌握了李勇老师所编
+
+写的那些代码，你的编码能力将会相当出众！','','M0103','2011-08-11 13:28:55','0103/001.jpg');
+INSERT INTO VideoSeries VALUES('V010302','银行业务调度系统','Teach003',38,'本视频讲解的内容为《
+
+银行业务调度系统》，这是继《交通灯管理系统》这道做出来就给7k月薪的面试题之后的另外一道面试题，同
+
+样也是软件公司要求面试者拿回家做三天，做出来就可以拿到7k月薪。','','M0103','2010-12-01 
+
+13:28:55','0103/002.jpg');
+INSERT INTO VideoSeries VALUES('V010303','网上商城项目','Teach003',31,'java web综合技术项目实战
+
+，传智播客名师张孝祥手把手教学，现场实战','','M0103','2009-12-11 13:28:55','0103/003.jpg');
+INSERT INTO VideoSeries VALUES('V010304','java网上在线支付实战视频','Teach009',31,'你知道如何让
+
+自己的网站与银行系统进行对接吗？如何让用户通过网上银行向你支付费用吗？其实一点也不难！本视频教程
+
+将毫无保留的教授给你！ 本视频教程的内容完全取源于真实项目，并且项目完成后的运行结果也完全真实。
+
+传智播客学员们学习和实践后的结果证明，你只需花上三个小时的时间将本视频教程认真学习一遍，就可以为
+
+自己的项目轻松增加网上在线支付的功能。','','M0103','2010-12-15 15:28:55','0103/004.jpg');
+
+INSERT INTO VideoSeries VALUES('V010401','张孝祥Struts1.3视频教程','Teach003',38,'本套视频教程是
+
+张孝祥老师在录制完中国第一套Java培训视频、潜心修炼6年后复出的继Java邮件开发视频教程之后的第二部
+
+视频教程，每位看过本视频教程的有经验人士都拍手赞叹此套视频教程为一部空前绝后的超经典之作，它引领
+
+了当前市面上流传的各类java视频教程的最高水准，是一套令所有java ee高级开发人员振奋和激动的作品，
+
+值得Java ee领域的所有开发人员学习，值得Java ee领域的所有培训老师和大学教师借鉴。我们建议大家按如
+
+下顺序来学习各个单元：《struts核心基础单元》 ——> 《FormBean与国际化单元》 ——> 《struts的各种
+
+实用功能与案例单元》 ——> 《struts文件上传单元》 ——> 《struts与validator框架单元》 ——> 
+
+《struts中的高级应用与源码分析单元》。','','M0104','2010-02-05 13:28:55','0104/001.jpg');
+INSERT INTO VideoSeries VALUES('V010402','Struts2实用简洁版视频','Teach008',33,'现在基于Struts2
+
+开发的新项目已经越来越多，struts2已经成为javaee程序员必须掌握的基本技能。本视频对struts2在项目中
+
+必用的各个知识点进行了详细的解讲，为了让大家用最少的时间学习到更多的知识，本视频在讲解过程中不东
+
+拉西扯一些废话，保证你听到的内容100%都是干货。学习完本视频，你已经具备开发struts2应用的能力，如
+
+果你还想继续深入全面了解struts2各个知识点及内部原理，请关注传智播客后续推出的由张孝祥老师主讲的
+
+“struts2.1技术大全及内部原理解剖”视频。','','M0104','2008-12-13 13:28:55','0104/002.jpg');
+INSERT INTO VideoSeries VALUES('V010403','Hibernate视频教程','Teach010',40,'许多有经验的开发人员
+
+都有一个共同的认识，那就是Hibernate要比Struts和Spring难掌握得多，初学者要想学好Hiberante就更是难
+
+上加难了！本课程的讲解者李勇老师的技术功底非常深厚，课程内容组织得非常合理和巧妙，知识点的讲解也
+
+很细腻和透彻，总结了许多独有的经验，许多有经验的开发人员听完李勇老师的Hibernate课程后，都有一种
+
+恍然大悟的感慨。管本套视频教程深入分析了Hibernate中的许多高级内幕和核心原理，但由于时间关系，一
+
+些知识点还没讲到或者没有进行透彻细致讲解，例如，单个对象重复调用save/update方法时的情况没有分析
+
+、hql方面的细节讲解得就比较少、实体对象要实现hashcode与equals方法的原理没有进行分析、jndi的
+
+数','','M0104','2009-07-11 13:28:55','0104/003.jpg');
+INSERT INTO VideoSeries VALUES('V010404','Spring2.5视频教程','Teach009',45,'本套视频教程从底层原
+
+理代码入手，循序渐进，透彻地向你展示了Spring 2.5的基本应用和各项新功能，清晰地讲解了如何使用
+
+Spring的最新和最优雅的方式来集成Struts,Struts2,Hibernate,JPA等流行的框架和技术。为了解剖Spring容
+
+器原理，黎活明老师在课堂现场亲手编写一个mini版的Spring容器，借此向大家阐释清楚Spring内部的核心代
+
+码和底层工作原理。本套视频教程是一个普通程序员向高手进阶的绝佳学习资料，值得大多数有经验的程序员
+
+学习和观摩。','','M0104','2009-07-11 13:28:55','0104/004.jpg');
+INSERT INTO VideoSeries VALUES('V010405','EJB3.0视频教程','Teach009',24,'视频教程相比书籍和文章
+
+的优势在于演示工具软件的操作，演示程序调试和错误排查技巧，逐步交互引导整个程序和项目开发的过程等
+
+，特别是在帮助新手快速动手入门方面更有着巨大作用。但视频教程在理论的详细阐述和语法知识的细节罗列
+
+讲解方面却不具优势，显得枯燥和容易让人走神，所以，本视频不会详细讲解EJB的所有方面，而只是帮助学
+
+习者快速动手入门EJB的主要内容，关于更多的细节知识，请参看本套视频教程的配套书籍《EJB 3.0 入门经
+
+典》。','','M0104','2009-07-11 13:28:55','0104/005.jpg');
+INSERT INTO VideoSeries VALUES('V010406','JPA详解视频教程','Teach009',29,'JPA用于整合现有的ORM技
+
+术，可以简化现有Java EE和Java SE应用的对象持久化的开发工作，实现ORM的统一。JPA作为一项对象持久化
+
+的标准，不但可以获得Java EE应用服务器的支持，还可以直接在Java SE中使用。JPA必将成为Java持久化解
+
+决方案的主流，如果你是Hibernate或者TopLink的等ORM技术的忠实用户，不管你是否情愿，你迟早也得使用
+
+JPA，那现在正好可以借助传智播客视频教程的帮助，开始学习和尝试JPA吧！','','M0104','2012-07-11 
+
+02:28:55','0104/006.jpg');
+
+INSERT INTO VideoSeries VALUES('V020101','XML_AJAX_DOM4J_JavaDB简略','Teach001',38,'本视频由尚学
+
+堂深资名师马士兵老师录制，内容生动丰富，涵盖重点，生动易懂，是XML入门一套很好的视
+
+频','','M0201','2011-10-01 10:28:55','0201/001.jpg');
+INSERT INTO VideoSeries VALUES('V020102','疯狂软件XML语法基础','Teach007',38,'1_疯狂软件_XML_语
+
+法基础-- XML是可扩展标记语言，在所有大型应用中做信息配置，数据存储，数据交换。  视频内容包括:XML
+
+元素、属性、文档结构等。2_疯狂软件_XML_dtd约束-- dtd是XML约束，用来规范元素于元素之间的关系等。
+
+视频内容包括:dtd的引入方式，元素定义，属性定义和实体定义等。3_疯狂软件_XML_解析入门 --在项目开发
+
+中，对XML文档进行分析，检索、修改、删除或重新组织其中的内容是必不可少的工作。 视频内容包括:XML解
+
+析技术，dom解析和sax解析，JAXP开发包。','','M0201','2011-10-01 10:28:55','0201/002.jpg');
+INSERT INTO VideoSeries VALUES('V020103','AJax视频教程','Teach007',38,'教程采用的AVI方式发布，所
+
+以看起来很流畅，大家可以通过包中附带的CamPlay.exe（拖入即可）观看和学习。如果您没有javaweb和
+
+javascript基础，强烈建议您先看传智播客张孝祥老师录制的javaweb和javascript视频教程，再来学习本教
+
+程，效果更佳！','','M0201','2011-10-01 10:28:55','0201/003.jpg');
+INSERT INTO VideoSeries VALUES('V020104','AJax技术','Teach007',38,'AJAX不是一种新的编程语言.而是
+
+一种更好更快以及交互性更强的技术。在WEB开发中应用广泛。','','M0201','2011-10-01 
+
+10:28:55','0201/004.jpg');
+
+INSERT INTO VideoSeries VALUES('V020201','HTML教程','Teach011',38,'《第6季HTML》讲解HTML的基础，
+
+本系列主要讲解HTML基础提高、CSS、Div+CSS布局等内容。学习JavaScriptDom、 JQuery、ASP.Net之前必须
+
+牢固掌握HTML。这套视频中对于大部分学员都已经掌握的HTML最基础的部分（比如HTML结构、标签、超链接、
+
+文字格式化等）没有讲解，对这部分不熟悉的同学请参考传智播客张孝祥老师的HTML和javascript视频教程。
+
+','','M0202','2010-02-01 23:52:55','0202/001.jpg');
+
+INSERT INTO VideoSeries VALUES('V020301','Html+css+JavaScript','Teach005',38,'本视频结合大量应用
+
+实例，详细地讲解了HTML语言、CSS、JavaScript、DOM对象模型编程、正则表达式，并介绍了网页脚本编程的
+
+其它相关技术和知识。','','M0203','2011-11-01 11:41:55','0203/001.jpg');
+INSERT INTO VideoSeries VALUES('V020302','JavaScript','Teach006',48,'JavaScript是一种能让你的网
+
+页更加生动活泼的程式语言，也是目前网页中设计中最容易学又最方便的语言。你可以利用JavaScript轻易的
+
+做出亲切的欢迎讯息、漂亮的数字钟、有广告效果的跑马灯及简易的选举，还可以显示浏览器停留的时间。让
+
+这些特殊效果提高网页的可观性。','','M0203','2011-11-03 11:41:55','0203/002.jpg');
+INSERT INTO VideoSeries VALUES('V020303','JavaScript教程','Teach011',48,'《第7季JavaScript》讲解
+
+JavaScript语言基础。','','M0203','2011-10-03 11:41:55','0203/003.jpg');
+INSERT INTO VideoSeries VALUES('V020304','DOM教程','Teach011',48,'主要讲解目前最流行的JavaScript
+
+开发库：JQuery，JQuery是对Dom的简化封装，因此需要《第8季Dom》的基础才能学得更好。访问
+
+http://oldnet.itcast.cn/casedemo/domjquery/ 查看学习完成以后能够做出的效果。下载包中
+
+的“DomJQuery.zip”是本节课程中用到的资源、图片和代码。 ！ ','','M0203','2011-10-03 
+
+11:41:55','0203/004.jpg');
+
+INSERT INTO VideoSeries VALUES('V020401','Jquery入门','Teach005',34,'本视频结合大量应用实例，详
+
+细地讲解了Jquery语言、CSS、JavaScript、DOM对象模型编程、正则表达式，并介绍了网页脚本编程的其它相
+
+关技术和知识。','','M0204','2011-12-01 13:28:55','0204/001.jpg');
+INSERT INTO VideoSeries VALUES('V020402','Jquery教程','Teach011',34,'本视频结合大量应用实例，详
+
+细地讲解了Jquery语言、CSS、JavaScript、DOM对象模型编程、正则表达式，并介绍了网页脚本编程的其它相
+
+关技术和知识。','','M0204','2011-12-01 13:28:55','0204/002.jpg');
+
+INSERT INTO VideoSeries VALUES('V030101','8天快速掌握Android视频','Teach009',38,'快速入门安卓开
+
+发的好视频，由传智播客著名讲师黎活明手把手教学','','M0301','2011-12-11 
+
+13:28:55','0301/001.jpg');
+INSERT INTO VideoSeries VALUES('V030102','Android实战开发视频','Teach009',38,'快速入门安卓开发的
+
+好视频，由传智播客著名讲师黎活明手把手教学','','M0301','2011-12-12 13:28:55','0301/002.jpg');
+INSERT INTO VideoSeries VALUES('V030103','独家Android4就业经典','Teach009',18,'内容概述：学习
+
+Android开发所需的核心知识，掌握一些必备的Android开发技能。课程目标：全面、系统的掌握开发实际的
+
+Android应用所需的核心开发知识。技术要点：从零开始，循序渐进掌握Android的核心开发知识；理解
+
+Android应用的运行过程、理解Intent和IntentFilter、 掌握资源和国际化、理解Android的进程和线程、理
+
+解Task和会退栈、理解Activity在屏幕旋转时的生命周期、 理解Handler的原理以及开发应用、掌握三种
+
+Service的写法、理解Broadcast的原理','','M0301','2011-12-12 13:28:55','0301/003.jpg');
+INSERT INTO VideoSeries VALUES('V030104','Android4项目实战--五子棋','Teach005',28,'课程目标：循
+
+序渐进的掌握开发实际的Android应用所需的知识，达到能进行实际项目开发的能力 技术要点：多种布局的综
+
+合使用、ImageButton的改进使用、AutoCompleteTextView的应用、显示多项的ListView、基本的人工智能的
+
+实现，基于启发式搜索算法、SharedPreferences和Sqlite的应用、自定义View的实现和应用等 
+
+','','M0301','2011-12-12 13:28:55','0301/004.jpg');
+
+INSERT INTO VideoSeries VALUES('V040101','Oracle视频教程','Teach001',38,'Oracle Database，又名
+
+Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。到目前仍在数据库市场上占有主要
+
+份额。劳伦斯·埃里森和他的朋友，之前的同事Bob Miner和Ed Oates在1977年建立了软件开发实验室咨询公
+
+司（SDL，Software Development Laboratories 。  ！','','M0401','2010-12-01 
+
+13:28:55','0401/001.jpg');
+
+INSERT INTO VideoSeries VALUES('V040201','MySql简明视频教程','Teach001',38,'在发布了上一次的视频
+
+<<尚学堂_马士兵_JDBC_MySQL_BBS项目课堂录制视频教程>>(通过emule或
+
+http://www.bjsxt.com/download.html可以下载,很多人发信来说不能够掌握MySQL,因此不能手把手完成BBS项
+
+目, 因此尚学堂发布MySQL的教学录象, 希望能够给大家以帮助, 但是即便如此, 因为尚学堂的教学过程是以
+
+Oracle为主, 因此很多基本的SQL内容在此视频中并没有讲到, 请见谅.这段视频应该在<<尚学堂_马士兵
+
+_JDBC_MySQL_BBS项目课堂录制视频教程>>的第一部分视频<<1_lomboz_eclipse_jdbc>>完成之后观看.尚学堂
+
+比较重视递归算法的运用, 因此, 视频为了教大家使用递归算法做了很多工作','','M0402','2010-12-01 
+
+13:28:55','0402/001.jpg');
+INSERT INTO VideoSeries VALUES('V040202','MySql频教程','Teach007',38,'MySQL是一个开放源码的小型
+
+关联式数据库管理系统，开发者为瑞典MySQL AB公司。目前MySQL被广泛地应用在Internet上的中小型网站中
+
+。由于其体积小、速度快、总体拥有成本低，尤其是开放源码这一特点，许多中小型网站为了降低网站总体拥
+
+有成本而选择了MySQL作为网站数据库','','M0402','2010-12-01 13:28:55','0402/002.jpg');
+INSERT INTO VideoSeries VALUES('V040203','Sql频教程','Teach011',38,'《第4季SQL从入门到提高》主要
+
+讲解数据库理论基础、SQL语句基础、高级SQL语法、SQLServer开发。数据库开发是现在几乎所有系统都会涉
+
+及到的核心技术，是后续ADO.Net、ASP.Net的基础，也是企业笔试、面试时的考查重点，因此必须牢固掌握。 
+
+','','M0402','2011-12-01 13:28:55','0402/003.jpg');
+INSERT INTO VideoSeries VALUES('V040204','MYSQL优化视频教程','Teach008',38,'在应用系统开发初期，
+
+由于开发数据库数据比较少，对于查询SQL语句，复杂视图的的编写等体会不出SQL语句各种写法的性能优劣，
+
+但是如果将应用系统提交实际应用后，随着数据库中数据的增加，系统的响应速度就成为目前系统需要解决的
+
+最主要的问题之一。系统优化中一个很重要的方面就是SQL语句的优化。对于海量数据，劣质SQL语句和优质
+
+SQL语句之间的速度差别可以达到上百倍，可见对于一个系统不是简单地能实现其功能就可，而是要写出高质
+
+量的SQL语句，提高系统的可用性。 ','','M0402','2011-12-01 13:28:55','0402/004.jpg');
+
+INSERT INTO VideoSeries VALUES('V050101','C#编程基础','Teach007',38,'这次传智播客发布了2011年最
+
+新的.Net基础提高课堂视频教程，内容涉及C#过程编程基础面向对象基础等内容，覆盖了从C#初学到提高的各
+
+阶段知识。','','M0501','2011-12-01 13:28:55','0501/001.jpg');
+INSERT INTO VideoSeries VALUES('V050102','C#面向对象基础','Teach011',38,'杨中科，CSDN学生大本营
+
+2009年度十佳老师。曾任职于微软中国、金蝶软件等知名IT企业。撰写了《自己动手写开发工具》、《程序员
+
+的SQL学习笔记》等技术图书。主导了金蝶EAS湖南烟草局SCM系统、字符终端图形库AHA3及开发工具AHAIDE、
+
+上海浦东发展银行图形前端等项目的开发，并且在中国工商银行批量平台、集中监控运维系统（部署于中国工
+
+商银行、中国农业银行、交通银行、北京银行、深圳发展银行','','M0501','2011-12-01 
+
+13:28:55','0501/002.jpg');
+
+INSERT INTO VideoSeries VALUES('V050201','WinForm基础视频教程','Teach011',27,'《第3季WinForm基础
+
+》适合掌握了C#语言基础和面向对象基本概念的同学学习。考虑到目前.Net招聘中WinForm开发的职位相对较
+
+少，因此我们没有讲解WinForm特有的技术点（页面布局、MDI、Win32 PInvoke、托盘编程、Windows Service
+
+、WinForm换肤、ActiveX等），这样保留的部分都是采用的非WinForm特有的技术，只是用WinForm做“壳”，
+
+主要内容都不是WinForm特有的技术，讲授的技术点都会在后续的课程中还会用到，主要目的是通过讲解
+
+WinForm和大量的练习帮助大家熟悉C#的实际应用，在实际功能点的开发中牢固掌握C#基
+
+础。','','M0502','2011-12-01 13:28:55','0502/001.jpg');
+INSERT INTO VideoSeries VALUES('V050202','ADO.NET教程','Teach011',32,'《第5季ADO.Net》适合掌握了
+
+C#语言和《第4季SQL从入门到提高》同学学习。主要讲解ADO.Net中Connection、Command、DataReader、
+
+DataSet、TypedDataSet等，并且讲解了大量实际项目中的真实案例。ADO.Net是现在几乎所有系统都会涉及到
+
+的核心技术，也是后续ASP.Net课程的学习基础，因此必须牢固掌握。 ','','M0502','2010-12-21 
+
+13:28:55','0502/002.jpg');
+INSERT INTO VideoSeries VALUES('V050203','ADO.NET基础','Teach03',32,'主要讲解ASP.Net技术的基础，
+
+需要有C#、ADO.net、HTML、Dom等的基础。注意ASP.Net只是表现层技术，ASP.Net技术本身并不难，难的是C#
+
+、HTML、Dom这些东西，因此.Net初学者千万不要心急的直接学ASP.Net，否则会困难重重，欲速则不达。 
+
+','','M0502','2010-12-21 13:28:55','0502/003.jpg');
+INSERT INTO VideoSeries VALUES('V050204','ASP.NET中级教程','Teach003',32,'《第11季asp.net中级》
+
+主要讲解ASP.Net中Request、Response、Session、Page等对象，并且对于ASP.Net中的HttpHandler进行了讲
+
+解，还讲解了ASP.Net基本控件、验证控件、母版、数据绑定基础等技术。本阶段安排了图库权限控制、图片
+
+水印、企业网站等实际项目案例。  ','','M0502','2010-12-21 13:28:55','0502/004.jpg');
+  
+INSERT INTO VideoSeries VALUES('V060201','PHP从入门到精通视频教程','Teach006',32,'PHP，是英文超
+
+级文本预处理语言Hypertext Preprocessor的缩写。PHP 是一种 HTML 内嵌式的语言，是一种在服务器端执行
+
+的嵌入HTML文档的脚本语言，语言的风格有类似于C语言，被广泛的运用。   ','','M0602','2010-12-21 
+
+13:28:55','0602/001.jpg');
+INSERT INTO VideoSeries VALUES('V060202','PHP从入门到精通视频教程配套笔记','Teach006',32,'PHP从
+
+入门到精通视频教程配套笔记，PHP，是英文超级文本预处理语言Hypertext Preprocessor的缩写。PHP 是一
+
+种 HTML 内嵌式的语言，是一种在服务器端执行的嵌入HTML文档的脚本语言，语言的风格有类似于C语言，被
+
+广泛的运用。   ','','M0602','2010-08-21 23:29:55','0602/002.jpg');
+INSERT INTO VideoSeries VALUES('V060203','LAMP经典入门教程','Teach006',32,'Linux+Apache+Mysql
+
++PHP一组常用来搭建动态网站或者服务器的开源软件，本身都是各自独立的程序，但是因为常被放在一起使用
+
+，拥有了越来越高的兼容度，共同组成了一个强大的Web应用程序平台。','','M0602','2010-08-21 
+
+23:29:55','0602/003.jpg');
+INSERT INTO VideoSeries VALUES('V060204','mvc框架-zend framework','Teach006',32,'Zend Framework 
+
+(简写ZF)是由 Zend 公司支持开发的完全基于 PHP5 的开源PHP开发框架，可用于开发 Web 程序和服务，ZF采
+
+用 MVC(Model–View-Controller) 架构模式来分离应用程序中不同的部分方便程序的开发和维护。  ！  
+
+','','M0602','2010-08-21 23:29:55','0602/004.jpg');
+INSERT INTO VideoSeries VALUES('V060205','smarty模板','Teach006',32,'Smarty是一个使用PHP写出来的
+
+模板引擎，是目前业界最著名的PHP模板引擎之一。它分离了逻辑代码和外在的内容，提供了一种易于管理和
+
+使用的方法，用来将原本与HTML代码混杂在一起PHP代码逻辑分离。简单的讲，目的就是要使PHP程序员同前端
+
+人员分离，使程序员改变程序的逻辑内容不会影响到前端人员的页面设计，前端人员重新修改页面不会影响到
+
+程序的程序逻辑，这在多人合作的项目中显的尤为重要。  ','','M0602','2010-08-21 
+
+23:29:55','0602/005.jpg');
+
+
+
+INSERT INTO Video VALUES('Vi01010101','Java简
+
+介',1,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 09:29:55');
+INSERT INTO Video VALUES('Vi01010102','Java程序设计环
+
+境',2,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:38:55');
+INSERT INTO Video VALUES('Vi01010103','Java程序的几门程序结
+
+构',3,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 11:28:55');
+INSERT INTO Video VALUES('Vi01010104','对象与
+
+类',4,11.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 11:22:55');
+INSERT INTO Video VALUES('Vi01010105','继
+
+承',5,13.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010106','接口与内部
+
+类',6,10.14,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010107','图形程序设
+
+计',7,17.42,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010108','时间处
+
+理',8,13.2,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010109','Swing用户界面处理组
+
+件',9,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010110','部署应用程序
+
+Applet',10,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010111','异常日志调试断言测
+
+试',11,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010112','泛型程序设
+
+计',12,12,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010113','集
+
+合',13,15.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+INSERT INTO Video VALUES('Vi01010114','多线
+
+程',14,10.52,'11:25:00','http://www.dengshijun.icoc.cc/','V010101','2012-10-01 10:28:55');
+
+INSERT INTO Video VALUES('Vi01020101','Servlet基础',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020102','Servlet会话跟踪',1,20,'11:25:00', '','V010201','2012-10-
+
+01 10:28:55');
+INSERT INTO Video VALUES('Vi01020103','JSP基础',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020104','JSP指令和动作',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020105','JSP内置对象',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020106','EL和JSTL',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020107','监听和过滤程',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020108','AJAX基础',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+INSERT INTO Video VALUES('Vi01020109','项目实战',1,20,'11:25:00', '','V010201','2012-10-01 
+
+10:28:55');
+
+INSERT INTO SeriesFavorite VALUES('pocketclass01','V010101','2012-10-03 12:48:55');
+
+/*关系表：单集收藏*/
+CREATE TABLE SingleFavorite(
+username VARCHAR(32) NOT NULL,
+idVideo CHAR(16) NOT NULL,
+addTime  DATETIME NOT NULL,/*收藏时间*/
+CONSTRAINT FK_SingleFavorite_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_SingleFavorite_idVideo FOREIGN KEY (idVideo) REFERENCES Video(idVideo),
+CONSTRAINT PK_SingleFavorite PRIMARY KEY(username,idVideo)
+);
+INSERT INTO SingleFavorite VALUES('pocketclass01','Vi01020104','2012-10-03 19:48:55');
+
+
+INSERT INTO Progress VALUES('pocketclass01','V010103','2012-10-03 19:48:55','2012-10-17 09:48:55','YES');
+INSERT INTO Progress VALUES('pocketclass01','V010102','2012-10-03 19:48:55','2012-10-17 09:48:55','YES');
+INSERT INTO Progress VALUES('pocketclass01','V010104','2012-10-03 19:48:55','2012-10-17 09:48:55','YES');
+
+INSERT INTO Progress VALUES('pocketclass01','V030101','2012-10-03 19:48:55','2012-10-17 09:48:55','YES');
+INSERT INTO Progress VALUES('pocketclass01','V010101','2012-10-03 19:48:55',null,'NO');
+INSERT INTO Progress VALUES('pocketclass01','V010401','2012-10-03 19:48:55',null,'NO');
+INSERT INTO Progress VALUES('pocketclass01','V010402','2012-10-03 19:48:55',null,'NO');
+INSERT INTO Progress VALUES('pocketclass01','V010403','2012-10-03 19:48:55',null,'NO');
+INSERT INTO Progress VALUES('pocketclass01','V010404','2012-10-03 19:48:55',null,'NO');
+
+CREATE TABLE LocationCategory(
+idLocationCategory CHAR(8) PRIMARY KEY ,
+locationName CHAR(32) NOT NULL/*位置的名称：收信箱，发信箱...*/
+);
+
+INSERT INTO LocationCategory VALUES('001','inbox');/*收信箱*/
+INSERT INTO LocationCategory VALUES('002','outbox');/*发信箱*/
+INSERT INTO LocationCategory VALUES('003','favobox');/*收藏信箱*/
+INSERT INTO LocationCategory VALUES('004','spambox');/*垃圾信箱*/
+INSERT INTO LocationCategory VALUES('005','draftbox');/*草稿信箱，暂未用*/
+
+
+
+
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-11 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-12 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-13 09:48:55','test','Content:aaa','YES');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-14 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-15 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-16 09:48:55','test','Content:aaa','YES');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-17 09:48:55','test','Content:aaa','YES');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-18 09:48:55','test','Content:aaa','YES');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-19 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-20 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-21 09:48:55','test','Content:aaa','YES');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-22 09:48:55','test','Content:aaa','NO');
+INSERT INTO Message(sendUserName,addreUserName,sendTime,title,content,isRead) VALUES('pocketclass01','pocketclass01','2012-10-23 09:48:55','test','Content:aaa','NO');
+
+
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-11 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-12 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-13 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-14 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-15 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-16 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-17 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-18 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-19 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-20 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-21 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-22 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('001','pocketclass01','pocketclass01','2012-10-23 09:48:55');
+
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-11 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-12 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-13 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-14 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-15 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-16 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-17 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-18 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-19 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-20 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-21 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-22 09:48:55');
+INSERT INTO MessageLocation(idLocationCategory,sendUserName,username,sendTime) VALUES('002','pocketclass01','pocketclass01','2012-10-23 09:48:55');
+
+
+/*帖子信息*/
+INSERT INTO PostInfo(idPostInfo) VALUES('S01');
+INSERT INTO PostInfo(idPostInfo) VALUES('S02');
+INSERT INTO PostInfo(idPostInfo) VALUES('S03');
+INSERT INTO PostInfo(idPostInfo) VALUES('S04');
+INSERT INTO PostInfo(idPostInfo) VALUES('S05');
+INSERT INTO PostInfo(idPostInfo) VALUES('S06');
+
+/*一级帖*/
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0101','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0101','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0201','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0201','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0301','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0301','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0401','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0401','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0501','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0501','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0601','内容是：水井坊','2012-10-23 09:48:55',0,0);
+INSERT INTO Post(username,title,idMiddle,content,postTime,browNum ,replyNum) VALUES('pocketclass01','java心得','M0601','内容是：水井坊','2012-10-23 09:48:55',0,0);
+
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',1);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',1);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',1);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',1);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',1);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',2);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',4);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',3);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',5);
+INSERT INTO MPostReply(username,title,content,postTime,parentPostId)  VALUES('pocketclass02','java心得','内容是：水井坊','2012-10-23 09:48:55',6);
+ 
+
+/*触发器完成*/
+
+
+/*空间信息表*/
+CREATE TABLE SpaceInfo(
+	username VARCHAR(32) NOT NULL,
+	viewAmount INT DEFAULT '0',/*总访问量*/
+	cmtAmount INT DEFAULT '0',/*笔记总数目*/
+	noteAmount INT DEFAULT '0',/*评论总数目*/
+	CONSTRAINT PK_SpaceInfo PRIMARY KEY(username),
+	CONSTRAINT FK_SpaceInfo_username FOREIGN KEY (username) REFERENCES Account(username)
+);
+
+/*触发器：用户注册后，申请空间*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_Account_rai; 
+CREATE TRIGGER t_Account_rai
+AFTER INSERT ON Account
+FOR EACH ROW
+BEGIN 
+INSERT INTO SpaceInfo(username) values(new.username);
+INSERT INTO CustomCategory(username,custom) values(new.username,'默认分类');
+END$$
+DELIMITER ;
+/*触发器完成*/
+
+/*创建触发器，用户发表一个笔记后，相应的分类下的数量加一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_Note_rai; 
+CREATE TRIGGER t_Note_rai
+AFTER INSERT ON Note
+FOR EACH ROW
+BEGIN
+UPDATE CustomCategory SET noteAmount = noteAmount+1 where idCustom = new.idCustom;
+END$$
+DELIMITER ;
+/*触发器完成*/
+
+/*系统分类表（同super表）*/
+/*用户自定义表*/
+CREATE TABLE CustomCategory(
+	idCustom INT NOT NULL AUTO_INCREMENT,
+	customName CHAR(32) NOT NULL,
+	username VARCHAR(32) NOT NULL,
+	isopen tinyint(1) DEFAULT '1',/*来访者是否可见，0表示仅自己，1表示所有人，默认为1*/
+	noteAmount INT DEFAULT '0',
+	CONSTRAINT PK_CustomCategory PRIMARY KEY(idCustom),
+	CONSTRAINT FK_CustomCategory_username FOREIGN KEY (username) REFERENCES Account(username)
+);
+INSERT INTO CustomCategory(customName,username,isopen,noteAmount) VALUES('默认分类','pocketclass01','1','0');
+INSERT INTO CustomCategory(customName,username,isopen,noteAmount) VALUES('01我的分类1','pocketclass01','1','0');
+INSERT INTO CustomCategory(customName,username,isopen,noteAmount) VALUES('01我的分类2','pocketclass01','1','0');
+INSERT INTO CustomCategory(customName,username,isopen,noteAmount) VALUES('01我的分类3','pocketclass01','1','0');
+INSERT INTO CustomCategory(customName,username,isopen,noteAmount) VALUES('01我的分类4','pocketclass01','1','0');
+INSERT INTO CustomCategory(customName,username,isopen,noteAmount) VALUES('默认分类','pocketclass02','1','0');
+
+/*笔记*/ 
+CREATE TABLE Note(
+idNote INT NOT NULL AUTO_INCREMENT,
+username VARCHAR(32) NOT NULL,
+idSuper CHAR(16) NOT NULL,/*系统分类*/
+idCustom INT,/*用户自定义分类*/
+title VARCHAR(128) NOT NULL,
+content TEXT NOT NULL,
+isdraft tinyint(1) DEFAULT '0',/*是否为草稿，0不是，1是，默认0*/
+cmtallow tinyint(1) DEFAULT '1',/*是否允许评论,0不允许，1允许，默认1*/
+viewAmount INT DEFAULT '0',/*浏览量*/
+cmtAmount INT DEFAULT '0',/*评论数目*/
+tags VARCHAR(200),/*标签：以，隔开*/
+postIP VARCHAR(20) NOT NULL,/*发布者IP地址*/
+addTime DATETIME NOT NULL,/*发布笔记时间*/
+updateTime DATETIME NOT NULL,/*最后一次编辑笔记时间*/
+CONSTRAINT PK_Note PRIMARY KEY(idNote),
+CONSTRAINT FK_Note_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_Note_cateGory FOREIGN KEY (idSuper) REFERENCES Super(idSuper),
+CONSTRAINT FK_Note_customName FOREIGN KEY (idCustom) REFERENCES CustomCategory(idCustom)
+);
+
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','1','我是第一篇','content:1，2，3，4','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-01 18:28:55','2012-11-11 13:28:55');
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','2','我是第二篇','content:123123123','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-02 18:28:55','2012-11-12 13:28:55');
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','2','我是第三篇','content:123123123','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-03 18:28:55','2012-11-13 13:28:55');
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','2','我是第四篇','content:123123123','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-04 18:28:55','2012-11-14 13:28:55');
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','2','我是第五篇','content:123123123','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-05 18:28:55','2012-11-15 13:28:55');
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','3','我是第六篇','content:123123123','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-06 18:28:55','2012-11-16 13:28:55');
+INSERT INTO Note
+(username,idSuper,idCustom,title,content,isdraft,cmtallow,viewAmount,cmtAmount,tags,postIP,addTime,updateTime) 
+values('pocketclass01','S01','3','我是第七篇','content:123123123','0','1','0','0','mysql,数据库,自增ID','183.034.054.033','2012-11-07 18:28:55','2012-11-17 13:28:55');
+
+/*评论表*/
+CREATE TABLE NoteComment(
+idNoteComment INT AUTO_INCREMENT,
+idNote INT NOT NULL,
+username VARCHAR(32) NOT NULL,
+parentIdNoteComment INT NOT NULL DEFAULT '0',/*父评论ID*/ 
+content TEXT NOT NULL,
+replyedTimes INT DEFAULT '0',/*被评论次数*/
+postIP VARCHAR(20) NOT NULL,
+time DATETIME NOT NULL,
+CONSTRAINT PK_NoteComment PRIMARY KEY(idNoteComment),
+CONSTRAINT FK_NoteComment_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_NoteComment_idNote FOREIGN KEY (idNote) REFERENCES Note(idNote)
+);
+
+INSERT INTO NoteComment(idNote,username,parentIdNoteComment,content,replyedTimes,postIP,time) 
+values('1','pocketclass02','0','总结的真实精辟啊!','0','185.033.034.033','2012-11-17 18:45:55');
+COMMIT;
+
+
+ 
+
+

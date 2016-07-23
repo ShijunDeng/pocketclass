@@ -1,0 +1,18 @@
+email：pocketclassroom@163.com
+密码:wust1001
+
+花生壳账户：pocketclass 
+密码：wust1001
+服务ID：8095507   
+域名：pocketclass.oicp.net 
+
+命令：
+svnadmin create svnrepo
+svnserve -d -r F:/360云盘/svnrepo
+svnserve -d -r F:/360云盘/svnrepo --listen-port 3690
+
+百度网盘:pocketclass 
+密码：wust1001
+
+个人网盘：TWT946057490
+密码：583660

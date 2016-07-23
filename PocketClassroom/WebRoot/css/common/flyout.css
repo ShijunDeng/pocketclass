@@ -1,0 +1,78 @@
+#allcourses {
+	width: 214px;
+	height: 228px;
+	border: #00CCFF 1px solid;
+}
+
+#top {
+	background-image: url(../../images/main/courses.jpg);
+	text-align: center;
+	padding-top:8px;
+	color: #fff;
+	height: 30px;
+}
+
+#leftcolumn {
+	float: left;
+}
+
+.dropdown {
+	display: block;
+	position: relative;
+	margin: 0px;
+	width:214px;
+}
+
+.dropdown dt {
+	border: 1px solid #9ac1c9;
+	padding-left: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	background: url(../../images/main/header.jpg);
+	padding-bottom: 6.2px;
+	padding-top: 7px;
+	padding-right:9px;
+}
+/*.dropdown .upperdd {border-bottom:none}*/
+.dropdown dt:hover {
+	background: url(../../images/main/header_over.gif);
+}
+
+.dropdown dd {
+	position: absolute;
+	top: 0;
+	overflow: hidden;
+	width: 208px;
+	display: none;
+	background: #fff;
+	opacity: 0;
+}
+
+.dropdown ul {
+	border: 1px solid #9ac1c9;	
+	list-style: none outside none;
+	padding-left:0px;
+	list-style-type:none;
+}
+
+.dropdown li {
+	display: inline;
+}
+
+.dropdown a,.dropdown a:active,.dropdown a:visited {
+	display: block;
+	color: #333;
+	padding-top:5px;
+	padding-bottom:5px;
+	text-decoration: none;
+	background: #eaf0f2;
+}
+
+.dropdown a:hover {
+	background: #d9e1e4;
+	color: #000;
+}
+
+.dropdown .underline {
+	border-bottom: 1px solid #b9d6dc;
+}

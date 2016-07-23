@@ -1,0 +1,149 @@
+#d1 {
+	border: border:#00CCFF 1px solid;
+	width: 960px;
+	height: 230px;
+}
+
+#detail_left {
+	width: 210px;
+	float: left;
+}
+
+#relative_categories,#retitive_videoseries {
+	border: #5489FD 1px solid;
+	width: 210px;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+#relative_title {
+	height: 20px;
+	background-color: #F4FCFC;
+	font-weight: bold;
+	font-size: 18px;
+	font-color: #535252;
+}
+
+#relative_super {
+	color: #EF9022;
+	height: 18px;
+	font-size:16px;
+	background-color: #FFFF99;
+}
+#relative_super a{
+	text-decoration: none;
+	color: #FF7B00;
+}
+#relative_super a:hover{
+	text-decoration: underline;
+	color: rgb(1, 171, 233);
+}
+#relative_middle {
+	font-size:16px;
+	height: auto;
+}
+
+#relative_middle a
+{
+	text-decoration: none;
+	color: #FF7B00;
+}
+#relative_middle a:hover{
+	text-decoration: underline;
+	color: rgb(1, 171, 233);
+}
+
+.relative_item a{
+	text-decoration: none;
+	color: #555252;
+}
+
+.relative_item a:hover{
+	text-decoration: underline;
+	color: rgb(1, 171, 233);
+}
+#series_right {
+	border: 1px solid rgb(51, 153, 255);
+	width: 680px;
+	margin-left: 20px;
+	float: left;
+}
+
+#thumbnail {
+	width: 200px;
+	height: 200px;
+	margin: 20px;
+	float: left;
+}
+
+img {
+	border-width: 0;
+	border-style: none;
+}
+
+.detail_right {
+	width: 370px;
+	height: 200px;
+	border: 1px solid #FFCC00; 
+	float: left;
+	margin: 20px;
+}
+
+.detail_title {
+	font-size: 18px;
+	text-align: left;
+	margin-bottom: 10px;
+	margin-left: 70px;
+}
+
+.detail_intro {
+	height: 120px;
+	text-align:left;
+	margin: 10px;
+}
+
+.detail_otherinfo {
+	text-align: left;
+	margin: 10px;
+}
+.detail_intro,.detail_otherinfo{
+	font-size:16px;
+}
+.item_video {
+	margin-left: 20px;
+}
+
+.item_video a {
+	text-decoration: none;
+}
+
+.clear {
+	clear: both;
+}
+
+fieldset {
+	width: 640px;
+	text-align: left;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+legend {
+	color: #0099FF;
+	font-weight: bold;
+}
+
+.addtoFav {
+	text-align:left;
+	margin:10px;
+}
+.addtoFav a {
+	width:100px;
+	height:33px;
+	background-image: url(../../images/videos/favourite.jpg);
+}
+
+.userspan,.timespan {
+	color: #F9BC28;
+	display: inline;
+}

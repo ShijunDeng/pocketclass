@@ -1,0 +1,72 @@
+1.更改工程名之后，还要在工程名上右键->属性->MyEclipse->Web:看看Web Context-root内容是否也已经改变；
+2.对Servlet重命名后，web.xml中的配置要手动修改；
+3.一般添加图片、图片改名之后，最好重新发布工程；
+4.如果反复修改，在浏览器中的结果依然和设计的有出入，考虑重新发布工程和清除浏览器中的记录及cookie
+5.URL传值带加号“+”的问题的解决方法 今天有同事问了个问题，在调试客户端向服务器传递参数时，参数中的“+”
+    全部变成了空格，原来是URL中默认的将“+”号转义了。 解决方法如下： 
+    	方法一:修改客户端，将客户端带“+”的参数中的“+”全部替换为‍“2B%”，这样参数传到服务器端时就能得到“+”了。 
+    	方法二:修改服务器端，将空格替换为“+”，这种方式只适用于参数中有‍“+”没有空格的情况。 例子：
+    	 		String a = reuqest.‍getParameter("clientStr")‍.replace(' ','+');   如果客户端为
+     			clientStr=test+OK，那么a的值为test+OK;
+     	 方法三:修改服务器端，将获取参数的方法由‍reuqest.‍getParameter改为‍
+      			request.getQueryString().substring(0)，然后对得到的字符串进行解析
+    	例子： ‍‍String a =request.getQueryString().substring(0); 
+    		  ‍如果客户端为clientStr=test+OK，那么a的值为‍clientStr=test+OK，需要再解析一下， 
+     		 a=a.‍substring(10);得到a的值为‍test+OK。 附：一个JS，用来转义URL中特殊字符的。 ‍
+      		function URLencode(sStr) 
+      		{ 
+      			return escape(sStr).replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27')
+      				.replace(/\//g,'%2F');
+      		} 
+ 6.如果启动服务器之前，数据库服务未启动，启动数据库服务后，要重新启动服务器；
+ 7.在AJAX技术中，向客户端回写数据的时候一定要明辨println和print的区别，尤其需要用回写数据做比较时
+   response.setContentType("text/plain");
+  8.<jsp:include page="../tail.jsp"></jsp:include> 不要用EL表达式，${pageContext.request.contextPath}...
+ 9. mysql中的char（32）可以存放32个中文字符
+ 10.<a href="${pageContext.request.contextPath}/servlet/FindVideoSeriesServlet?id=${courseFavorite.idMiddle}&type=primary">
+ 	包含EL表达式的参数在前，其它参数在后，否则会出现错误，EL表达式得不到对应的值
+ 12.日期转换：SimpleDateFormat sdfToLocal = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+ 	courFavo.setAddTime(sdfToLocal.format((rs.getTime("addTime"))));不对
+ 	必须：
+ 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat sdfToLocal = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+ 	courFavo.setAddTime(sdfToLocal.format(sdf.parse((rs.getString("addTime")))));
+ 13.	request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
+14.
+			//String.Format,DateTime日期时间格式化集锦，备忘录
+            DateTime dt = DateTime.Now;//2010年10月4日 17点05分
+            string str = "";
+            //str = string.Format("{0:y yy yyy yyyy}", dt); //10 10 2010 2010
+            //str = String.Format("{0:M MM MMM MMMM}", dt); //10 10 十月 十月
+            //str = String.Format("{0:d dd ddd dddd}", dt); //4 04 周一 星期一
+            //str = String.Format("{0:h hh H HH}", dt);   // 5 05 17 17
+            //str = String.Format("{0:m mm}", dt);  //8 08
+            //str = String.Format("{0:s ss}", dt);  //3 03
+            //str = String.Format("{0:f ff fff ffff}", dt);  //9 95 953 9530
+            //str = String.Format("{0:F FF FFF FFFF}", dt);  //9 95 953 953
+            //str = String.Format("{0:t tt}", dt);  //下 下午
+            //str = String.Format("{0:z zz zzz}", dt);  //+8 +08 +08:00
+ 
+            //str = String.Format("{0:d/M/yyyy HH:mm:ss}", dt); //4-10-2010 17:16:50
+            //str = String.Format("{0:M/d/yyyy}", dt);    //10-4-2010
+            //str = String.Format("{0:MM/dd/yyyy}", dt);          //10-04-2010
+            //str = String.Format("{0:ddd, MMM d, yyyy}", dt);    //周一, 十月 4, 2010
+            //str = String.Format("{0:dddd, MMMM d, yyyy}", dt);  //星期一, 十月 4, 2010
+            //str = String.Format("{0:MM/dd/yy}", dt);            //10-04-10
+            //str = String.Format("{0:MM/dd/yyyy}", dt);          //10-04-2010
+ 
+            //str = String.Format("{0:t}", dt);  //17:29
+            //str = String.Format("{0:d}", dt);  //2010-10-4
+            //str = String.Format("{0:T}", dt);  //17:29:59
+            //str = String.Format("{0:D}", dt);  //2010年10月4日
+            //str = String.Format("{0:f}", dt);  //2010年10月4日 17:30
+            //str = String.Format("{0:F}", dt);  //2010年10月4日 17:31:11
+            //str = String.Format("{0:g}", dt);  //2010-10-4 17:35
+            //str = String.Format("{0:G}", dt);  //2010-10-4 17:36:18
+            //str = String.Format("{0:m}", dt);  //10月4日
+            //str = String.Format("{0:y}", dt);  //2010年10月
+            //str = String.Format("{0:r}", dt);  //Mon, 04 Oct 2010 17:37:25 GMT
+            //str = String.Format("{0:s}", dt);  //2010-10-04T17:37:43
+            str = String.Format("{0:u}", dt);  //2010-10-04 17:38:01Z

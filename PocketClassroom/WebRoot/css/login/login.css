@@ -1,0 +1,47 @@
+
+#mainframe{
+	margin-left:85px;
+	margin-right:85px;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+#bodydiv {
+	height: 330px;
+	width: 799px;
+	border: #00CCFF 1px solid;
+	position: relative;
+}
+#top_bar {
+	background-image: url(../../images/login/topbar.gif);
+	width: 800px;
+	height: 33px;
+	text-align: left;
+	color: #FFFFFF;
+}
+#formdiv {
+	position: absolute;
+	left:70px;
+	margin-top: 50px;	
+	width: 300px;
+}
+
+#userdiv,#pswdiv{
+	margin-bottom: 10px;
+}
+
+
+#intro {
+	margin-top: auto;
+	padding:10px;
+	border-left: #00FFFF  1px solid;
+	width: 350px;
+	height: 300px;
+	float: right;
+}
+
+#errormessage {
+	height: 30px;
+	display: block;
+	color:red;
+	font-size:16px;
+}

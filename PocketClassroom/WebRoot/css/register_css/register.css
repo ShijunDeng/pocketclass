@@ -1,0 +1,130 @@
+@CHARSET "UTF-8";
+
+.wrapper {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+.head {
+	margin-top: 5px;
+}
+
+.blank_a {
+	margin-top: 0px;
+	height: 20px;
+}
+
+.content {
+	margin-left: 250px;
+	margin-top: 0px;
+}
+
+.logo_css01 {
+	margin-top: 0px;
+	margin-left: 0px;
+	height: 42px;
+	width: 678px;
+	background-image: url(../../images/register_logo/register_img001.png);
+}
+
+.blueLogo_a {
+	padding-left: 2px;
+	padding-top: 0px;
+	padding-top: 0px;
+	height: 33px;
+	width: 800px;
+	background-image: url(../../images/register_logo/register_img002.gif);
+}
+
+.title_a {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+.r_form {
+	margin-top: 0px;
+	margin-left: 0px;
+	width: 800px;
+	height: 418px;
+	border: 1px solid #0099FF;
+}
+
+.line1 {
+	padding-left: 0px;
+	padding-top: 50px;
+}
+
+.line2 {
+	padding-top: 20px;;
+}
+
+.line3 {
+	margin-left: -14px;
+	padding-top: 20px;
+}
+
+.line4,.line5,.line6,.line7 {
+	padding-top: 20px;
+}
+
+.username_label,.password_label,.confPassword_label,.email_label,.vercode_label
+	{
+	padding-top: 0px;
+	padding-left: 100px;
+}
+
+.username_text,.password_text,.confPassword_text,.email_text,.vercode_text
+	{
+	color: #000000;
+	border-color: #999999;
+	font-family: arial, "宋体";
+}
+
+.usernameTip,.passwordTip,.confPasswordTip,.emailTip,.vercodeTip {
+	color: #6A5A53;
+}
+
+.agreement {
+	padding-top: 0px;
+	padding-left: 80px;
+}
+
+.blank_b {
+	padding-left: 150px;
+}
+
+.doSubmit {
+	padding-left: -100px;
+	border: none;
+	width: 154px;
+	height: 37px;
+	color: #FFFFFF;
+	font-size: 14px;
+	background-image: url(../../images/register_logo/dosubmit.gif);
+	background-position: bottom;
+}
+
+.tail {
+	padding-left: 0px;
+}
+
+.errorInfo {
+	color: #FF0000;
+	pedding-left: 20px;
+	display: none;
+}
+
+.focus {
+	border: #33CCFF 2px solid;
+}
+
+.norm {
+	border: #999999 1px solid;
+}
+
+.error {
+	border: #FF0000 1px solid;
+}

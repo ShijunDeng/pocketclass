@@ -1,0 +1,483 @@
+/*注意：
+1、中文插入问题；
+2、检测性别；
+3、插入帖子的时候，浏览次数增加问题，帖子编号增加问题
+*/
+/*
+TRUNCATE TABLE 表名;删除表中的全部数据
+SHOW ENGINE INNODB STATUS;
+*/
+/*
+先进入MySql D:\Program Files\MySQL\MySQL Server 5.5\bin
+mysqldump -u root -p pocketclass > E:\1.txt
+*/
+use mysql 
+/*修改密码*/
+update user set Password=password('pocketclass') where User='root'; 
+flush privileges; 
+alter database pocketclass character set gb2312;
+
+drop database pocketclass;
+create database pocketclass;
+use pocketclass;  
+DROP TABLE BlackList;
+DROP TABLE LoginLog;
+DROP TABLE Comment;
+DROP TABLE NoteComment;
+DROP TABLE Note;
+DROP TABLE CustomCategory;
+DROP TABLE SpaceInfo;
+DROP TABLE PostInfo;
+DROP TABLE LPostReply;
+DROP TABLE MPostReply;
+DROP TABLE Post;
+DROP TABLE MessageLocation;
+DROP TABLE Message;
+DROP TABLE LocationCategory;
+DROP TABLE Progress;
+DROP TABLE SingleFavorite;
+DROP TABLE SeriesFavorite;
+DROP TABLE PlayRecord;
+DROP TABLE Video;
+DROP TABLE VideoSeries;
+DROP TABLE Middle;
+DROP TABLE Super;
+DROP TABLE Teacher;
+DROP TABLE Account;
+
+SET NAMES GBK;/*插入汉字问题*/
+CREATE TABLE Account(
+username VARCHAR(32) PRIMARY KEY,
+password VARCHAR(128)  NOT NULL,
+name VARCHAR(32),/*真实姓名*/
+nickname VARCHAR(32),
+gender CHAR(6),
+dateOfBirth DATE,
+phoneNum CHAR(11),
+email  VARCHAR(32) UNIQUE NOT NULL,
+QQ CHAR(16),
+college VARCHAR(64),
+academy VARCHAR(64),
+access CHAR(16),
+headPorAdd CHAR(40) DEFAULT 'no_img.jpg'
+);
+
+
+CREATE TABLE SUPER(
+idSuper CHAR(16) PRIMARY KEY,
+cateGory CHAR(32) NOT NULL
+);
+
+CREATE TABLE Middle(
+idMiddle CHAR(16) PRIMARY KEY,
+middleCateGory CHAR(32) NOT NULL,
+idSuper CHAR(16) NOT NULL,
+CONSTRAINT FK_Middle_idSuper FOREIGN KEY (idSuper) REFERENCES Super(idSuper) 
+);
+
+
+CREATE TABLE Teacher(
+idTeacher CHAR(16) PRIMARY KEY,
+name VARCHAR(32),
+age INT,
+gender CHAR(6),
+resume TEXT
+);
+
+
+CREATE TABLE VideoSeries(
+idVideoSeries CHAR(16) PRIMARY KEY,
+topic CHAR(32) NOT NULL,
+idTeacher CHAR(16) NOT NULL,
+size int,/*系列视频的集数*/
+introduction TEXT,
+linkAddress VARCHAR(256) NOT NULL,
+idMiddle CHAR(16) NOT NULL,
+uploadTime DATETIME,
+thumbnail CHAR(16),/*视频系列缩略图*/
+CONSTRAINT FK_VideoSeries_idMiddle FOREIGN KEY (idMiddle) REFERENCES Middle(idMiddle),
+CONSTRAINT FK_VideoSeries_idTeacher FOREIGN KEY (idTeacher) REFERENCES Teacher(idTeacher) 
+);
+
+
+CREATE TABLE Video(
+idVideo CHAR(16) PRIMARY KEY,
+title VARCHAR(40) NOT NULL,
+position TINYINT NOT NULL,/*第几集*/
+size DOUBLE NOT NULL,/*这集视频的大小*/
+duration TIME NOT NULL,/*视频时长*/
+linkAddress VARCHAR(256) NOT NULL,
+idVideoSeries CHAR(16) NOT NULL,
+uploadTime DATETIME,
+CONSTRAINT FK_Video_idVideoSeries FOREIGN KEY (idVideoSeries) REFERENCES VideoSeries (idVideoSeries)
+);
+
+
+
+
+/*对视频评论*/
+CREATE TABLE Comment(
+idVideoSeries CHAR(16) ,
+username VARCHAR(32) ,
+content TEXT NOT NULL,
+time DATETIME,
+CONSTRAINT PK_Comment PRIMARY KEY(idVideoSeries,username,time),
+CONSTRAINT FK_Comment_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_Comment_idVideoSeries FOREIGN KEY (idVideoSeries) REFERENCES VideoSeries (idVideoSeries)
+);
+
+CREATE TABLE PlayRecord(
+idVideo CHAR(16) NOT NULL,
+username VARCHAR(32) NOT NULL,
+playTime DATETIME NOT NULL,
+CONSTRAINT FK_PlayRecord_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_PlayRecord_idVideo FOREIGN KEY (idVideo) REFERENCES Video(idVideo),
+CONSTRAINT PK_PlayRecord PRIMARY KEY(idVideo,username)
+);
+
+/*关系表：系列收藏*/
+CREATE TABLE SeriesFavorite(
+username VARCHAR(32) NOT NULL,
+idVideoSeries CHAR(16) NOT NULL,
+addTime  DATETIME NOT NULL,/*收藏时间*/
+CONSTRAINT FK_SeriesFavorite_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_SeriesFavorite_idVideoSeries FOREIGN KEY (idVideoSeries) REFERENCES VideoSeries
+
+(idVideoSeries),
+CONSTRAINT PK_SeriesFavorite PRIMARY KEY(username,idVideoSeries)
+);
+
+
+/*关系表：单集收藏*/
+CREATE TABLE SingleFavorite(
+username VARCHAR(32) NOT NULL,
+idVideo CHAR(16) NOT NULL,
+addTime  DATETIME NOT NULL,/*收藏时间*/
+CONSTRAINT FK_SingleFavorite_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_SingleFavorite_idVideo FOREIGN KEY (idVideo) REFERENCES Video(idVideo),
+CONSTRAINT PK_SingleFavorite PRIMARY KEY(username,idVideo)
+);
+
+
+/*学习进度表*/
+CREATE TABLE Progress(
+username VARCHAR(32) NOT NULL,
+idVideoSeries CHAR(16) NOT NULL,
+startTime DATETIME NOT NULL,
+endTime DATETIME,
+isEnd CHAR(4) NOT NULL,
+CONSTRAINT FK_Progress_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_Progress_idVideoSeries FOREIGN KEY (idVideoSeries) REFERENCES VideoSeries(idVideoSeries),
+CONSTRAINT PK_Progress PRIMARY KEY(username,idVideoSeries)
+);
+
+
+CREATE TABLE LocationCategory(
+idLocationCategory CHAR(8) PRIMARY KEY ,
+locationName CHAR(32) NOT NULL/*位置的名称：收信箱，发信箱...*/
+);
+
+
+
+CREATE TABLE Message(
+sendUserName VARCHAR(32) NOT NULL,/*发信人账号*/
+addreUserName VARCHAR(32) NOT NULL,/*收信人账号*/
+sendTime DATETIME NOT NULL,/*发信时间*/
+title VARCHAR(128),
+content TEXT ,/*允许为空*/
+isRead CHAR(4) NOT NULL,/*是否已读*/
+CONSTRAINT PK_Message PRIMARY KEY(sendUserName,sendTime),
+CONSTRAINT FK_Message_sendUserName FOREIGN KEY (sendUserName) REFERENCES Account(username),
+CONSTRAINT FK_Message_addreUserName FOREIGN KEY (addreUserName) REFERENCES  Account(username)
+);
+
+CREATE TABLE MessageLocation(
+idLocationCategory CHAR(8) NOT NULL ,
+sendUserName VARCHAR(32) NOT NULL,/*发信人账号*/
+username VARCHAR(32) NOT NULL,/*相对于谁*/
+sendTime DATETIME NOT NULL,/*发信时间*/
+CONSTRAINT PK_MessageLocation PRIMARY KEY(idLocationCategory,username,sendUserName,sendTime),
+CONSTRAINT FK_MessageLocation_username FOREIGN KEY (username) REFERENCES Account(username),
+/*CONSTRAINT FK_MessageLocation_sendTime FOREIGN KEY (sendTime) REFERENCES  Message(sendTime),*/
+CONSTRAINT FK_MessageLocation_sendUserName FOREIGN KEY (sendUserName) REFERENCES  Message(sendUserName),
+CONSTRAINT FK_MessageLocation_idLocationCategory FOREIGN KEY (idLocationCategory) REFERENCES  LocationCategory(idLocationCategory)
+);
+
+/*
+
+DROP TABLE PostInfo;
+DROP TABLE LPostReply;
+DROP TABLE MPostReply;
+DROP TABLE Post;
+*/
+
+/**
+父贴
+用户名+发帖时间其实已经可以作为主键，加上postId是为了数据操作和程序实现的时候方便
+一级帖
+*/
+CREATE TABLE Post(
+idPost INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+username VARCHAR(32) NOT NULL,
+title VARCHAR(128) NOT NULL,
+idMiddle CHAR(16) NOT NULL,
+content TEXT NOT NULL, 
+postTime DATETIME NOT NULL,/*发帖时间*/
+browNum INT DEFAULT 0,
+replyNum INT DEFAULT 0,
+CONSTRAINT FK_Post_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_Post_idMiddle FOREIGN KEY (idMiddle) REFERENCES Middle(idMiddle)
+);
+
+/**
+二级帖
+*/
+CREATE TABLE MPostReply(
+idMPostReply INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+username VARCHAR(32) NOT NULL,
+title VARCHAR(128) NOT NULL,
+content TEXT NOT NULL, 
+postTime DATETIME NOT NULL,/*发帖时间*/
+browNum INT DEFAULT 0,
+replyNum INT DEFAULT 0,
+parentPostId INT, 
+CONSTRAINT FK_MPostReply_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_MPostReply_parentPostId FOREIGN KEY (parentPostId) REFERENCES Post(idPost)
+);
+
+/*三级帖*/
+CREATE TABLE LPostReply(
+idLPostReply INT PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+username VARCHAR(32) NOT NULL,
+title VARCHAR(128) NOT NULL,
+content TEXT NOT NULL, 
+postTime DATETIME NOT NULL,/*发帖时间*/
+browNum INT DEFAULT 0,
+replyNum INT DEFAULT 0,
+parentPostId INT, 
+CONSTRAINT FK_LPostReply_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_LPostReply_parentPostId FOREIGN KEY (parentPostId) REFERENCES MPostReply(idMPostReply)
+);
+
+/*帖子的统计信息*/
+CREATE TABLE PostInfo(
+idPostInfo  CHAR(16) PRIMARY KEY,
+postsNum INT DEFAULT 0,/*一种分类下帖子的总数*/
+topicNum INT  DEFAULT 0,/*一种分类下帖子的主题数*/
+latestIdPost INT,/*最近一次帖子id*/
+/*CONSTRAINT FK_PostInfo_latestIdPost FOREIGN KEY (latestIdPost) REFERENCES Post(idPost) ,删帖事会引起参照完整性问题*/
+CONSTRAINT FK_PostInfo_id FOREIGN KEY (idPostInfo) REFERENCES Super(idSuper) 
+);
+
+
+/*发一级帖触发PostInfo中topicNum（主题数）、postsNum（帖子数）加一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_PostInfo_Add; 
+CREATE TRIGGER t_PostInfo_topicNumAdd
+AFTER INSERT ON Post 
+FOR EACH ROW
+BEGIN
+UPDATE PostInfo SET topicNum = topicNum+1,latestIdPost=new.idPost,postsNum = postsNum+1 where idPostInfo = 
+( SELECT idSuper FROM Middle WHERE
+ Middle.idMiddle=new.idMiddle);
+END$$
+DELIMITER ;
+
+/*删一级帖触发PostInfo中topicNum（主题数）、postsNum（帖子数）减一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_PostInfo_Del; 
+CREATE TRIGGER t_PostInfo_Del
+AFTER DELETE ON Post 
+FOR EACH ROW
+BEGIN
+UPDATE PostInfo SET topicNum = topicNum-1,postsNum = postsNum-1 where idPostInfo = 
+( SELECT idSuper FROM Middle WHERE
+ Middle.idMiddle=old.idMiddle);
+END$$
+DELIMITER ;
+
+
+/*发二级帖触发PostInfo中topicNum（主题数）、postsNum（帖子数）  Post中replyNum 加一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_MPostReply_Add; 
+CREATE TRIGGER t_MPostReply_Add
+AFTER INSERT ON MPostReply 
+FOR EACH ROW
+BEGIN
+UPDATE PostInfo SET postsNum = postsNum+1  where idPostInfo =
+ 	(	SELECT Middle.idSuper FROM Middle,Post
+ 		WHERE new.parentPostId=Post.idPost AND
+ 		Post.idMiddle= Middle.idMiddle);
+UPDATE Post SET Post.replyNum = Post.replyNum+1 where Post.idPost = new.parentPostId;
+END$$
+DELIMITER ;
+
+/*删二级帖触发PostInfo中topicNum（主题数）、postsNum（帖子数））  Post中replyNum 减一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_MPostReply_Del; 
+CREATE TRIGGER t_MPostReply_Del
+AFTER DELETE ON MPostReply 
+FOR EACH ROW
+BEGIN
+UPDATE PostInfo SET postsNum = postsNum-1 where idPostInfo =
+ 	(	SELECT Middle.idSuper FROM Middle,Post
+ 		WHERE old.parentPostId=Post.idPost AND
+ 		Post.idMiddle= Middle.idMiddle);
+ /*UPDATE Post SET Post.replyNum = Post.replyNum-1 where   old.parentPostId=Post.idPost;*/
+ 
+END$$
+DELIMITER ;
+
+
+/*发三级帖触发PostInfo中topicNum（主题数）、postsNum（帖子数） MPostReply中replyNum加一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_LPostReply_Add; 
+CREATE TRIGGER t_LPostReply_Add
+AFTER INSERT ON LPostReply 
+FOR EACH ROW
+BEGIN
+UPDATE PostInfo SET postsNum = postsNum+1  where idPostInfo =
+ 	(	SELECT Middle.idSuper FROM Middle ,MPostReply,Post
+ 		WHERE new.parentPostId=MPostReply.idMPostReply AND
+ 		MPostReply.parentPostId=Post.idPost AND
+ 		Post.idMiddle= Middle.idMiddle);
+ UPDATE MPostReply SET MPostReply.replyNum = MPostReply.replyNum+1 where MPostReply.idMPostReply = new.parentPostId;	
+END$$
+DELIMITER ;
+
+
+
+/*删三级帖触发PostInfo中topicNum（主题数）、postsNum（帖子数）  MPostReply中replyNum减一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_LPostReply_Del; 
+CREATE TRIGGER t_LPostReply_Del
+AFTER DELETE ON LPostReply 
+FOR EACH ROW
+BEGIN
+UPDATE PostInfo SET postsNum = postsNum-1 where idPostInfo =
+ 	(	SELECT Middle.idSuper FROM Middle ,MPostReply,Post
+ 		WHERE old.parentPostId=MPostReply.idMPostReply AND
+ 		MPostReply.parentPostId=Post.idPost AND
+ 		Post.idMiddle= Middle.idMiddle);
+ /* UPDATE MPostReply SET MPostReply.replyNum = MPostReply.replyNum-1 where old.parentPostId= MPostReply.idMPostReply ;	*/
+ 		
+END$$
+DELIMITER ;
+
+
+
+/*-------------------笔记---------------------------*/
+/*空间信息表*/
+CREATE TABLE SpaceInfo(
+	username VARCHAR(32) NOT NULL,
+	viewAmount INT DEFAULT '0',/*总访问量*/
+	cmtAmount INT DEFAULT '0',/*笔记总数目*/
+	noteAmount INT DEFAULT '0',/*评论总数目*/
+	CONSTRAINT PK_SpaceInfo PRIMARY KEY(username),
+	CONSTRAINT FK_SpaceInfo_username FOREIGN KEY (username) REFERENCES Account(username)
+);
+
+/*系统分类表（同super表）*/
+
+/*用户自定义表*/
+CREATE TABLE CustomCategory(
+	idCustom INT NOT NULL AUTO_INCREMENT,
+	customName CHAR(32) NOT NULL,
+	username VARCHAR(32) NOT NULL,
+	isopen tinyint(1) DEFAULT '1',/*来访者是否可见，0表示仅自己，1表示所有人，默认为1*/
+	noteAmount INT DEFAULT '0',
+	CONSTRAINT PK_CustomCategory PRIMARY KEY(idCustom),
+	CONSTRAINT FK_CustomCategory_username FOREIGN KEY (username) REFERENCES Account(username)
+);
+
+/*笔记*/ 
+CREATE TABLE Note(
+idNote INT NOT NULL AUTO_INCREMENT,
+username VARCHAR(32) NOT NULL,
+idSuper CHAR(16) NOT NULL,/*系统分类*/
+idCustom INT,/*用户自定义分类*/
+title VARCHAR(128) NOT NULL,
+content TEXT NOT NULL,
+isdraft tinyint(1) DEFAULT '0',/*是否为草稿，0不是，1是，默认0*/
+cmtallow tinyint(1) DEFAULT '1',/*是否允许评论,0不允许，1允许，默认1*/
+viewAmount INT DEFAULT '0',/*浏览量*/
+cmtAmount INT DEFAULT '0',/*评论数目*/
+tags VARCHAR(200),/*标签：以，隔开*/
+postIP VARCHAR(20) NOT NULL,/*发布者IP地址*/
+addTime DATETIME NOT NULL,/*发布笔记时间*/
+updateTime DATETIME NOT NULL,/*最后一次编辑笔记时间*/
+CONSTRAINT PK_Note PRIMARY KEY(idNote),
+CONSTRAINT FK_Note_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_Note_cateGory FOREIGN KEY (idSuper) REFERENCES Super(idSuper),
+CONSTRAINT FK_Note_customName FOREIGN KEY (idCustom) REFERENCES CustomCategory(idCustom)
+);
+
+/*评论表*/
+CREATE TABLE NoteComment(
+idNoteComment INT AUTO_INCREMENT,
+idNote INT NOT NULL,
+username VARCHAR(32) NOT NULL,
+parentId INT NOT NULL DEFAULT '0',/*父评论ID*/ 
+content TEXT NOT NULL,
+replyedTimes INT DEFAULT '0',/*被评论次数*/
+postIP VARCHAR(20) NOT NULL,
+time DATETIME NOT NULL,
+CONSTRAINT PK_NoteComment PRIMARY KEY(idNoteComment),
+CONSTRAINT FK_NoteComment_username FOREIGN KEY (username) REFERENCES Account(username),
+CONSTRAINT FK_NoteComment_idNote FOREIGN KEY (idNote) REFERENCES Note(idNote)
+);
+
+/*登陆日志*/
+CREATE TABLE LoginLog(
+username VARCHAR(32) NOT NULL,
+loginTime DATETIME NOT NULL,
+cancellationTime   DATETIME,/*注销时间，暂时未用*/
+loginIP VARCHAR(20) NOT NULL, 
+CONSTRAINT PK_LoginLog PRIMARY KEY(username,loginTime)
+);
+
+/*黑名单*/
+CREATE TABLE BlackList(
+username VARCHAR(32) NOT NULL,
+time DATETIME,/*加入黑名单时间*/
+causeTag INT,/*加入黑名单的原因标识*/
+CONSTRAINT PK_BlackList PRIMARY KEY(username,time)
+);
+/*触发器1：用户注册后，申请空间和添加默认分类*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_Account_rai; 
+CREATE TRIGGER t_Account_rai
+AFTER INSERT ON Account
+FOR EACH ROW
+BEGIN 
+INSERT INTO SpaceInfo(username) values(new.username);
+INSERT INTO CustomCategory(username,customName) values(new.username,'默认分类');
+END$$
+DELIMITER ;
+/*触发器1完成*/
+
+/*触发器2:用户发表一个笔记后，空间中笔记数量加一和相应的分类下的数量加一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_Note_rai; 
+CREATE TRIGGER t_Note_rai
+AFTER INSERT ON Note
+FOR EACH ROW
+BEGIN
+UPDATE CustomCategory SET noteAmount = noteAmount+1 where idCustom = new.idCustom;
+UPDATE SpaceInfo SET noteAmount = noteAmount+1 where username = new.username;
+END$$
+DELIMITER ;
+/*触发器2完成*/
+
+/*触发器3:用户删除一个笔记后，空间中笔记数量减一和相应的分类下的数量减一*/
+DELIMITER $$
+DROP TRIGGER IF EXISTS t_Note_rad; 
+CREATE TRIGGER t_Note_rad
+AFTER DELETE ON Note
+FOR EACH ROW
+BEGIN
+UPDATE CustomCategory SET noteAmount = noteAmount-1 where idCustom = old.idCustom;
+UPDATE SpaceInfo SET noteAmount = noteAmount-1 where username = old.username;
+END$$
+DELIMITER ;
+/*触发器3完成*/

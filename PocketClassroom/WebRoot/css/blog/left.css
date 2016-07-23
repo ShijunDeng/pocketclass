@@ -1,0 +1,249 @@
+@CHARSET "UTF-8";
+.forum_menu span {
+	border: #00a0ef 1px solid;
+	width: 155px;
+	padding: 0 5px;
+	line-height: 20px;
+	display: block;
+}
+
+.forum_menu ul {
+	border: #00A0EF 1px solid;
+	width: 150px;
+	padding: 5px;
+	line-height: 25px;
+	background: #FAFAFA;
+	margin: -1px 0 0 0;
+	padding-left: 10px;
+}
+
+.forum_menu_big span {
+	border: #00a0ef 1px solid;
+	width: 195px;
+	padding: 0 5px;
+	line-height: 20px;
+	display: block;
+}
+
+.forum_menu_big ul {
+	border: #00A0EF 1px solid;
+	width: 190px;
+	*width: 195px;
+	padding: 5px;
+	line-height: 25px;
+	background: #FAFAFA;
+	margin: -1px 0 0 0;
+	padding-left: 10px;
+}
+
+.forum_menu ul li {
+	border-bottom: #00a0ef 1px dashed;
+}
+.div_block {
+	float: left;
+	width: 120px;
+	height: 130px;
+	margin: 10px 0 0 0;
+	overflow: hidden;
+}
+
+.blog_con {
+	background: #00a0ef;
+	border: #00a0ef 1px solid;
+	text-align: center;
+}
+
+th.thhead {
+	border-right: #ffffff solid;
+	border-top: #ffffff solid;
+	font-weight: bold;
+	border-left: #ffffff solid;
+	border-bottom: #ffffff solid;
+	height: 28px
+}
+
+.blog_title {
+	color: #fff;
+	font-size: 14px;
+	line-height: 25px;
+}
+
+.blog_title a {
+	color: #fff;
+	font-size: 14px;
+}
+
+ol,ul {
+	list-style: none;
+}
+
+a:link {
+	color: #005EA7;
+	text-decoration: none;
+}
+
+a:active {
+	color: #005EA7
+}
+
+a:visited {
+	color: #005EA7;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #dd6900;
+	text-decoration: underline;
+}
+
+.rank {
+	vertical-align: top;
+	height: 60px;
+}
+
+.rank_logo {
+	vertical-align: top;
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin-top: 3px;
+}
+
+.rank_info {
+	height: 50px;
+	overflow: hidden;
+	word-break: break-all;
+	word-wrap: break-word;
+	line-height: 16px;
+	float: left;
+	width: 100px;
+}
+
+.rank_top {
+	padding: 5px 0 5px 5px;
+	border: none;
+	float: left;
+	float: left;
+	width: 100px;
+}
+
+.img_border {
+	border: 1px solid #CCC;
+}
+
+
+.cattitle {
+	font-weight: bold;
+	font-size: 12px;
+	color: #00a0ef;
+	letter-spacing: 1px;
+}
+
+h1 {
+	font-size: 2em;
+	line-height: 1.5em;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+	color: black;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 1.5em;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+	color: black;
+}
+
+h3 {
+	font-size: 1.2em;
+	line-height: 1.5em;
+	margin: 0 0 0.5em 0;
+	padding: 0;
+	color: black;
+}
+
+h4 {
+	font-size: 1.15em;
+	line-height: 1.3em;
+	margin: 0 0 0.25em 0;
+	padding: 0;
+	color: black;
+}
+
+h5 {
+	font-size: 1.1em;
+	line-height: 1.3em;
+	margin: 0 0 0.25em 0;
+	padding: 0;
+	color: black;
+}
+
+h6 {
+	font-size: 1em;
+	line-height: 1.3em;
+	margin: 0 0 0.25em 0;
+	padding: 0;
+	color: black;
+}
+
+td {
+	
+}
+
+td.row1 {
+	background-color: #fafafa;
+	padding: 5px;
+}
+
+tr.row1 {
+	background-color: #fafafa;
+}
+
+.btn-img {
+	border: 0px;
+	cursor: pointer;
+	overflow: hidden;
+	margin-top: 5px;
+	padding: 0px;
+	text-align: center;
+	font-family: "宋体";
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.btn-img:hover {
+	font-family: "宋体";
+	font-size: 14px;
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.btn-s1,.btn-s2,.btn-s3 {
+	border: 0px solid #fff;
+	color: #fff;
+	padding: 5px;
+	*padding: 2px;
+}
+
+.btn-s1,.btn-s1:hover {
+	background: #FF7101;
+}
+
+.genmed,.name {
+	font-size: 11px;
+}
+
+.gensmall,.postdetails {
+	font-size: 10px;
+}
+
+.strong {
+	font-weight: bold;
+}
+
+#content{
+	
+}
